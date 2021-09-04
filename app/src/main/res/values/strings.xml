@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">GST Calculator</string>
+    <string name="amount_text_field">Amount</string>
+    <string name="amount_prefix_INR">₹</string>
+    <string name="amount_prefix_USD">$</string>
+    <string name="select_currency">Select currency</string>
+    <string name="currency_menu">Currency</string>
+    <string name="amount_text">Initial Amount</string>
+    <string name="amount_default">0.00</string>
+    <string name="rate_text">Tax Rate</string>
+    <string name="rate_text_field">Rate</string>
+    <string name="rate_suffix">%</string>
+    <string name="rate_default">0.0</string>
+    <string name="add_GST">Add GST+</string>
+    <string name="remove_GST">Remove GST-</string>
+    <string name="net_amount_text">Net Amount</string>
+    <string name="GST_amount_text">GST Amount</string>
+    <string name="total_amount_text">Total Amount</string>
+    <string name="amount_error">Amount field is empty</string>
+    <string name="rate_error">Rate field is empty</string>
+</resources>
