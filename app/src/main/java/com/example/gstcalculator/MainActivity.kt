@@ -19,10 +19,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //Currency Exposed Drop Down Menu (not properly functional)
         val items = listOf("INR", "USD")
         val adapter = ArrayAdapter(this, R.layout.dropdown_item, items)
         (binding.currencyMenu.editText as? AutoCompleteTextView)?.setAdapter(adapter)
         binding.currencyMenuAutoComplete.setText(items[1], false)
+
+
+//------------------------------------------------------------- non-working code ------------------------------------------------------------
 //        binding.currencyMenuAutoComplete.doAfterTextChanged {  }
 //        binding.amountTextField.setOnClickListener()
 //        {
@@ -42,13 +47,18 @@ class MainActivity : AppCompatActivity() {
 //                binding.rateEditText.hint = R.string.rate_default.toString()
 //            }
 //        }
+//-------------------------------------------------------------------------------------------------------------------------------------------
 
+        //Response to click on Add GST button
         binding.addGST.setOnClickListener()
         {
+            //input is taken & converted to double type
             val amountString = binding.amountEditText.text.toString()
             val amount = amountString.toDoubleOrNull()
             val rateString = binding.rateEditText.text.toString()
             val rate = rateString.toDoubleOrNull()
+
+            //exceptions handling
             if (amount == null && rate == null)
             {
                 errorMsg(2)
@@ -64,22 +74,35 @@ class MainActivity : AppCompatActivity() {
                 errorMsg(1)
                 return@setOnClickListener
             }
+
+            //error texts are removed
             binding.amountTextField.error = null
             binding.rateTextField.error = null
+
+            //calculation
             val gst = (amount*rate)/100
+
+            //"0.00" hint is disabled
             binding.netAmountTextField.isHintEnabled = false
             binding.GSTAmountTextField.isHintEnabled = false
             binding.totalAmountTextField.isHintEnabled = false
+
+            //outputs are set
             binding.netAmountEditText.setText(NumberFormat.getCurrencyInstance().format(amount))
             binding.GSTAmountEditText.setText(NumberFormat.getCurrencyInstance().format(gst))
             binding.totalAmountEditText.setText(NumberFormat.getCurrencyInstance().format(amount+gst))
         }
+
+        //Response to click on Remove GST button
         binding.removeGST.setOnClickListener()
         {
+            //input is taken & converted to double type
             val amountString = binding.amountEditText.text.toString()
             val amount = amountString.toDoubleOrNull()
             val rateString = binding.rateEditText.text.toString()
             val rate = rateString.toDoubleOrNull()
+
+            //exceptions handling
             if (amount == null && rate == null)
             {
                 errorMsg(2)
@@ -95,20 +118,33 @@ class MainActivity : AppCompatActivity() {
                 errorMsg(1)
                 return@setOnClickListener
             }
+
+            //error texts are removed
             binding.amountTextField.error = null
             binding.rateTextField.error = null
+
+            //calculation
             val total = (amount*100)/(rate+100)
+
+            //"0.00" hint is disabled
             binding.netAmountTextField.isHintEnabled = false
             binding.GSTAmountTextField.isHintEnabled = false
             binding.totalAmountTextField.isHintEnabled = false
+
+            //outputs are set
             binding.netAmountEditText.setText(NumberFormat.getCurrencyInstance().format(amount))
             binding.GSTAmountEditText.setText(NumberFormat.getCurrencyInstance().format(amount-total))
             binding.totalAmountEditText.setText(NumberFormat.getCurrencyInstance().format(total))
         }
+
+        //keyboard visibility control
         binding.rateEditText.setOnKeyListener{view, keyCode, _->handleKeyEvent(view, keyCode)}
     }
 
+    //exceptions handling & error texts
     private fun errorMsg(flag: Int) {
+
+        //input texts are made null & hints ("0.00") are set to output fields
         binding.netAmountEditText.text = null
         binding.netAmountTextField.isHintEnabled = true
         binding.netAmountTextField.hint = getString(R.string.amount_default)
@@ -118,6 +154,8 @@ class MainActivity : AppCompatActivity() {
         binding.totalAmountEditText.text = null
         binding.totalAmountTextField.isHintEnabled = true
         binding.totalAmountTextField.hint = getString(R.string.amount_default)
+
+        //error texts are set
         if (flag == 2) {
             binding.amountTextField.error = getString(R.string.amount_error)
             binding.rateTextField.error = getString(R.string.rate_error)
@@ -135,6 +173,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    //keyboard gets hidden on clicking Enter
     private fun handleKeyEvent(view: View, keyCode: Int):Boolean
     {
         if (keyCode == KeyEvent.KEYCODE_ENTER)

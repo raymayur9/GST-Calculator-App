@@ -12,6 +12,7 @@
         android:padding="16dp"
         tools:context=".MainActivity">
 
+    <!--Currency Text View-->
         <TextView
             android:id="@+id/currency_text"
             android:layout_width="wrap_content"
@@ -22,17 +23,19 @@
             app:layout_constraintTop_toTopOf="@id/currency_menu"
             app:layout_constraintVertical_bias="0.14" />
 
+        <!--Currency Exposed Drop Down Menu-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/currency_menu"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="200dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
             android:hint="@string/currency_menu"
             app:helperTextEnabled="true"
             app:helperText=" "
             app:startIconDrawable="@drawable/ic_currency"
+            android:layout_marginStart="60dp"
             app:layout_constraintStart_toEndOf="@id/currency_text"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <AutoCompleteTextView
@@ -44,6 +47,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+    <!--Amount Text View-->
         <TextView
             android:id="@+id/amount_text"
             android:layout_width="wrap_content"
@@ -54,6 +58,7 @@
             app:layout_constraintBottom_toBottomOf="@id/amount_text_field"
             app:layout_constraintVertical_bias="0.14"/>
 
+    <!--Amount Text Field-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/amount_text_field"
             android:layout_width="0dp"
@@ -76,6 +81,7 @@
                 android:inputType="numberDecimal" />
         </com.google.android.material.textfield.TextInputLayout>
 
+    <!--Rate Text View-->
         <TextView
             android:id="@+id/rate_text"
             android:layout_width="wrap_content"
@@ -86,6 +92,7 @@
             app:layout_constraintBottom_toBottomOf="@id/rate_text_field"
             app:layout_constraintVertical_bias="0.14"/>
 
+    <!--Rate Text Field-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/rate_text_field"
             android:layout_width="0dp"
@@ -108,24 +115,27 @@
                 android:inputType="numberDecimal" />
         </com.google.android.material.textfield.TextInputLayout>
 
+    <!--Add GST Button-->
         <Button
             android:id="@+id/add_GST"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="@string/add_GST"
-            android:layout_marginStart="24dp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/remove_GST"
             app:layout_constraintTop_toBottomOf="@id/rate_text_field" />
 
+    <!--Remove GST Button-->
         <Button
             android:id="@+id/remove_GST"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="@string/remove_GST"
-            android:layout_marginEnd="24dp"
+            app:layout_constraintStart_toEndOf="@id/add_GST"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rate_text_field" />
 
+    <!--Net Amount Text View-->
         <TextView
             android:id="@+id/net_amount_text"
             android:layout_width="wrap_content"
@@ -135,6 +145,7 @@
             app:layout_constraintTop_toTopOf="@id/net_amount_text_field"
             app:layout_constraintBottom_toBottomOf="@id/net_amount_text_field"/>
 
+    <!--Net Amount Text Field (uneditable - only for displaying result)-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/net_amount_text_field"
             android:layout_width="0dp"
@@ -154,6 +165,7 @@
                 android:inputType="none" />
         </com.google.android.material.textfield.TextInputLayout>
 
+    <!--GST Amount Text View-->
         <TextView
             android:id="@+id/GST_amount_text"
             android:layout_width="wrap_content"
@@ -163,6 +175,7 @@
             app:layout_constraintTop_toTopOf="@id/GST_amount_text_field"
             app:layout_constraintBottom_toBottomOf="@id/GST_amount_text_field"/>
 
+    <!--GST Amount Text Field (uneditable - only for displaying result)-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/GST_amount_text_field"
             android:layout_width="0dp"
@@ -182,6 +195,7 @@
                 android:inputType="none" />
         </com.google.android.material.textfield.TextInputLayout>
 
+    <!--Total Amount Text View-->
         <TextView
             android:id="@+id/total_amount_text"
             android:layout_width="wrap_content"
@@ -191,6 +205,7 @@
             app:layout_constraintTop_toTopOf="@id/total_amount_text_field"
             app:layout_constraintBottom_toBottomOf="@id/total_amount_text_field"/>
 
+    <!--Total Amount Text Field (uneditable - only for displaying result)-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/total_amount_text_field"
             android:layout_width="0dp"
